@@ -9,8 +9,36 @@
  * @author CLinicIT
  */
 public class Player {
-    public int playerId;
-    public String playerName;
-    public int playerPoints;
-    public int playerScore;
+    private int playerId;
+    private String playerName;
+    private int playerPoints;
+    private int playerScore;
+    
+    
+    public Player(){}
+
+    public Player(int playerId, String playerName, int playerScore) {
+        this.playerId = playerId;
+        this.playerName = playerName;
+        this.playerScore = playerScore;
+    }
+    
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getPlayerPoints() {
+        return playerPoints;
+    }
+
+    public int getPlayerScore() {
+        return playerScore;
+    }
+    
+    
+    
 }

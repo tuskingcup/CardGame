@@ -13,7 +13,7 @@ public class CardGame {
         Card card =new Card();
         for(int loop=0;loop<53;loop++){
        System.out.println(card.getCardRemaining());
-        System.out.println(card.drawCard());
+        System.out.println(card.drawCard()); 
         }
     }
 }

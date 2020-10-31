@@ -57,29 +57,30 @@ public class Card {
     }
 
     public String drawCard() {
-        if(cardRemaining>0){
-        int cardGet = randomCard();
-        String cardRealyGet = card[cardGet].cardNumber+" "+card[cardGet].getCardFace();
-        cardRemaining--;
-        Card[] newDeck = new Card[cardRemaining];
-        for(int i=0;i<cardRemaining+1;i++){
-            if(i < cardGet){ 
-            newDeck[i]=card[i];
+        if (cardRemaining > 0) {
+            int cardGet = randomCard();
+            String cardRealyGet = card[cardGet].cardNumber + " " + card[cardGet].getCardFace();
+            cardRemaining--;
+            Card[] newDeck = new Card[cardRemaining];
+            for (int i = 0; i < cardRemaining + 1; i++) {
+                if (i < cardGet) {
+                    newDeck[i] = card[i];
+                } else if (i > cardGet) {
+                    newDeck[i - 1] = card[i];
+                } else {
+                }
             }
-            else if(i>cardGet){
-            newDeck[i-1]=card[i];
+            for (int j = 0; j < cardRemaining; j++) {
+                card[j] = newDeck[j];
             }
-            else{}
-        }
-        for(int j=0;j<cardRemaining;j++){
-            card[j]=newDeck[j];
-        }
-        return cardRealyGet;
-    }else{return "No card to draw now";}
-    }
-    
 
-    public int randomCard() {
+            return cardRealyGet;
+        } else {
+            return "No card to draw now";
+        }
+    }
+
+    private int randomCard() {
         return (int) ((Math.random() * cardRemaining));
     }
 
