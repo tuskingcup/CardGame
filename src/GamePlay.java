@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class GamePlay {
 
     Card card = new Card();
-    Player[] player;
+    Player player= new Player();
     int maxPlayer;
     int playerCount = 2;
     Scanner sc = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class GamePlay {
     private Player winner;
 
     public GamePlay() {
-        home();
+        first();
 //        System.out.print("insert amount of player: ");
 //        this.maxPlayer = sc.nextInt();
 //        System.out.println(sc.nextLine());
@@ -31,7 +31,15 @@ public class GamePlay {
 //            addPlayer(sc.nextLine());
 //        }
     }
-
+    public void first(){
+        System.out.println("||=======================================||");
+        System.out.println("||=====WelCome to Fantastic CardGame=====||");
+        System.out.println("||=======================================||");
+        System.out.println("||============Insert Your Name===========||");
+        System.out.println("||=======================================||");
+        player.setPlayerName(sc.nextLine());
+        home();
+    }
     public void home() {
         System.out.println("||=======================================||");
         System.out.println("||=====WelCome to Fantastic CardGame=====||");
@@ -56,14 +64,14 @@ public class GamePlay {
     public void play() {
         System.out.println("||=======================================||");
         System.out.println("||============Press 1 to START===========||");
-        System.out.println("||=========Press 2 to EDIT PLAYER========||");
+        System.out.println("||============Press 2 to OPTION==========||");
         System.out.println("||============Prees 0 to EXIT============||");
         System.out.println("||=======================================||");
         switch (getNumberFromKeyboard()) {
             case 1:
                 break;
             case 2:
-                editPlayer();
+                option();
                 break;
             case 0:
                 System.out.println();
@@ -76,42 +84,60 @@ public class GamePlay {
         }
     }
 
-    public void editPlayer() {
+    public void option() {
         System.out.println("||=======================================||");
+        System.out.println("                     "+getPlayerName());
+        System.out.println("||===========1.EDIT PLAYER NAME==========||");
         System.out.println("||===============Bot amount==============||");
         System.out.println("||================= <" + (playerCount - 1 >= 10 ? playerCount - 1 + "> " : playerCount - 1 + "> =") + "================||");
-        System.out.println("||=============1.Increase Bot============||");
-        System.out.println("||=============2.Decrease Bot============||");
+        System.out.println("||=============2.Increase Bot============||");
+        System.out.println("||=============3.Decrease Bot============||");
         System.out.println("||=============Prees 0 to EXIT===========||");
         System.out.println("||=======================================||");
         switch (getNumberFromKeyboard()) {
             case 1:
+                editPlayerName();
+                break;
+            case 2:
                 if (playerCount < 17) {
                     playerCount++;
                 }
-                editPlayer();
+                option();
                 break;
-            case 2:
+            case 3:
                 if (playerCount > 2) {
                     playerCount--;
                 }
-                editPlayer();
+                option();
                 break;
             case 0:
                 play();
                 break;
             default:
-                editPlayer();
+                System.out.println();
+                option();
                 break;
         }
     }
     
     public void start(){
+        String draw =drawCard();
+        System.out.println("||=======================================||");
+        System.out.println("||================You got a==============||");
+        System.out.println("||=======================================||");
+        System.out.println("||============="+draw+"============||");
+        System.out.println("||=============2.Decrease Bot============||");
+        System.out.println("||=============Prees 0 to EXIT===========||");
+        System.out.println("||=======================================||");
+        
+        
     }
+    
+    public void editPlayerName(){}
 
-    private void addPlayer(String name) {
-        player[playerCount] = new Player(playerCount, name, 0);
-    }
+//    private void addPlayer(String name) {
+//        player[playerCount] = new Player(playerCount, name, 0);
+//    
 
     public String drawCard() {
         return card.drawCard();
@@ -122,7 +148,18 @@ public class GamePlay {
     }
 
     public int getNumberFromKeyboard() {
-        return sc.nextInt();
+        int getNumber = sc.nextInt();
+//       while(!sc.hasNextInt() )
+//        {
+//            System.out.print("Invalid value!: ");
+//
+//            getNumber = sc.nextInt();
+//        }
+        return getNumber;
+    }
+
+    public String getPlayerName() {
+        return player.getPlayerName();
     }
 
 }

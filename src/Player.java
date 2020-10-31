@@ -47,6 +47,10 @@ public class Player {
     public int getPlayerScore() {
         return playerScore;
     }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
     
     
     
