@@ -12,6 +12,8 @@ public class CardGame {
     public static void main(String[] args) {
         Card card =new Card();
         
+       System.out.println(card);
+        System.out.println(card.drawCard());
         System.out.println(card);
     }
 }

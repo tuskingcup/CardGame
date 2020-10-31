@@ -14,6 +14,7 @@ public class Card {
     private String cardFace;
     private int points;
     private int points2;
+    private int cardRemaining = 52;
     private Card[] card = new Card[52];
 
     public Card() {
@@ -31,7 +32,9 @@ public class Card {
         int count = 0;
         for (int num = 1; num <= 13; num++) {
             for (int face = 1; face <= 4; face++) {
-                card[count] = new Card(num == 1 ? "Ace" : num == 11 ? "Jack" : num == 12 ? "Queen" : num == 13 ? "King" : Integer.toString(num), face == 1 ? "Clubs" : face == 2 ? "Diamonds" : face == 3 ? "Hearts" : "Spades", num > 10 ? 0 : num, face);
+                card[count] = new Card(num == 1 ? "Ace" : num == 11 ? "Jack" : num == 12 ? "Queen" : num == 13 ? "King" : Integer.toString(num),
+                        face == 1 ? "Clubs" : face == 2 ? "Diamonds" : face == 3 ? "Hearts" : "Spades",
+                        num > 10 ? 0 : num, face);
                 count++;
             }
         }
@@ -46,8 +49,25 @@ public class Card {
     }
 
     public String getCard(int index) {
-
         return card[index].cardNumber + " " + card[index].cardFace;
+    }
+
+    public String drawCard() {
+        int cardGet = randomCard();
+        String cardRealyGet = card[cardGet].cardNumber+" "+card[cardGet].getCardFace();
+        cardRemaining--;
+        Card[] newDeck = new Card[cardRemaining];
+        for(int i=0;i<cardRemaining;i++){
+            if(i != cardGet){
+            newDeck[i]=card[i];
+            }
+        }
+        card = newDeck;
+        return cardRealyGet;
+    }
+
+    public int randomCard() {
+        return (int) ((Math.random() * cardRemaining));
     }
 
     @Override
