@@ -27,6 +27,7 @@ public class Card {
         this.points = points;
         this.points2 = points2;
     }
+    
 
     public void cardGennarate() {
         int count = 0;
@@ -53,13 +54,13 @@ public class Card {
     }
 
     public String getCard(int index) {
-        return card[index].cardNumber + " " + card[index].cardFace;
+        return card[index].cardNumber + " " + card[index].cardFace/*+" "+card[index].points+" "+card[index].points2*/;
     }
 
     public String drawCard() {
         if (cardRemaining > 0) {
             int cardGet = randomCard();
-            String cardRealyGet = card[cardGet].cardNumber + " " + card[cardGet].getCardFace();
+            String cardRealyGet = getCard(cardGet);
             cardRemaining--;
             Card[] newDeck = new Card[cardRemaining];
             for (int i = 0; i < cardRemaining + 1; i++) {
