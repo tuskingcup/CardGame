@@ -48,23 +48,36 @@ public class Card {
         return cardNumber;
     }
 
+    public int getCardRemaining() {
+        return cardRemaining;
+    }
+
     public String getCard(int index) {
         return card[index].cardNumber + " " + card[index].cardFace;
     }
 
     public String drawCard() {
+        if(cardRemaining>0){
         int cardGet = randomCard();
         String cardRealyGet = card[cardGet].cardNumber+" "+card[cardGet].getCardFace();
         cardRemaining--;
         Card[] newDeck = new Card[cardRemaining];
-        for(int i=0;i<cardRemaining;i++){
-            if(i != cardGet){
+        for(int i=0;i<cardRemaining+1;i++){
+            if(i < cardGet){ 
             newDeck[i]=card[i];
             }
+            else if(i>cardGet){
+            newDeck[i-1]=card[i];
+            }
+            else{}
         }
-        card = newDeck;
+        for(int j=0;j<cardRemaining;j++){
+            card[j]=newDeck[j];
+        }
         return cardRealyGet;
+    }else{return "No card to draw now";}
     }
+    
 
     public int randomCard() {
         return (int) ((Math.random() * cardRemaining));
@@ -73,7 +86,7 @@ public class Card {
     @Override
     public String toString() {
         String allCard = "";
-        for (int i = 0; i < card.length; i++) {
+        for (int i = 0; i < cardRemaining; i++) {
             allCard += getCard(i) + "\n";
         }
         return allCard;
