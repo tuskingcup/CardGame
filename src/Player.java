@@ -1,13 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author CLinicIT
- */
 
 public class Player {
 
@@ -34,16 +24,21 @@ public class Player {
         return playerName;
     }
 
-    public Card getHandCard1() {
-        return handCard1;
+    
+    public void drawHand1(Card drawHand1){
+    this.handCard1=drawHand1;
+    }
+    
+    public void drawHand2(Card drawHand2){
+    this.handCard2=drawHand2;
+    }
+    
+    public void drawHand3(Card drawHand3){
+    this.handCard3=drawHand3;
     }
 
-    public Card getHandCard2() {
-        return handCard2;
-    }
-
-    public Card getHandCard3() {
-        return handCard3;
+    public Card getHandCard(int hand) {
+        return hand==1?handCard1:hand==2?handCard2:handCard3;
     }
 
 
