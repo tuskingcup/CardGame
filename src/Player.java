@@ -8,30 +8,24 @@
  *
  * @author CLinicIT
  */
+
 public class Player {
+
     private int playerId;
     private String playerName;
-    private Card card1;
-    private Card card2;
-    private int playerPoints;
-    private int playerScore;
-    
-    
-    public Player(){}
+    private Card handCard1 = new Card();
+    private Card handCard2= new Card();
+    private Card handCard3= new Card();
 
-    public Player(int playerId, String playerName, int playerScore) {
+    public Player(int playerId, String playerName, Card handCard1, Card handCard2, Card handCard3) {
         this.playerId = playerId;
         this.playerName = playerName;
-        this.playerScore = playerScore;
+        this.handCard1 = handCard1;
+        this.handCard2 = handCard2;
+        this.handCard3 = handCard3;
+
     }
 
-    public Player(int playerId, String playerName, Card card1, Card card2) {
-        this.playerId = playerId;
-        this.playerName = playerName;
-        this.card1 = card1;
-        this.card2 = card2;
-    }
-    
     public int getPlayerId() {
         return playerId;
     }
@@ -40,18 +34,17 @@ public class Player {
         return playerName;
     }
 
-    public int getPlayerPoints() {
-        return playerPoints;
+    public Card getHandCard1() {
+        return handCard1;
     }
 
-    public int getPlayerScore() {
-        return playerScore;
+    public Card getHandCard2() {
+        return handCard2;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public Card getHandCard3() {
+        return handCard3;
     }
-    
-    
-    
+
+
 }
