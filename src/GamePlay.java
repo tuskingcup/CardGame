@@ -62,9 +62,9 @@ public class GamePlay {
 
     public void first() {
         System.out.println("||========================================||");
-        System.out.println("||======WelCome to Fantastic CardGame=====||");
-        System.out.println("||========================================||");
-        System.out.println("||=============Insert Your Name===========||");
+        System.out.println("||      WelCome to Fantastic CardGame     ||");
+        System.out.println("||                                        ||");
+        System.out.println("||             Insert Your Name           ||");
         System.out.println("||========================================||");
         System.out.print("Your name: ");
         String name = sc.nextLine();
@@ -72,22 +72,22 @@ public class GamePlay {
         for (int i = 1; i < 17; i++) {
             player[i] = new Player(i, "Bot" + i, null, null, null);
         }
-        System.out.println("");
         home();
     }
 
     public void home() {
+
         boolean exit = false;
         do {
+            System.out.println();
             System.out.println("||========================================||");
-            System.out.println("||======WelCome to Fantastic CardGame=====||");
-            System.out.println("||========================================||");
-            System.out.println("||=============Press 1 to PLAY============||");
-            System.out.println("||==========Prees 0 to LEAVE GAME=========||");
+            System.out.println("||      WelCome to Fantastic CardGame     ||");
+            System.out.println("||                                        ||");
+            System.out.println("||             Press 1 to PLAY            ||");
+            System.out.println("||          Prees 0 to LEAVE GAME         ||");
             System.out.println("||========================================||");
             switch (getNumberFromKeyboard()) {
                 case 1:
-                    System.out.println();
                     play();
                     break;
                 case 0:
@@ -95,19 +95,20 @@ public class GamePlay {
                     break;
                 default:
                     System.out.println();
-
                     break;
             }
         } while (!exit);
     }
 
     public void play() {
+
         boolean exit = false;
         do {
+            System.out.println();
             System.out.println("||========================================||");
-            System.out.println("||=============Press 1 to START===========||");
-            System.out.println("||=============Press 2 to OPTION==========||");
-            System.out.println("||=============Prees 0 to EXIT============||");
+            System.out.println("||             Press 1 to START           ||");
+            System.out.println("||             Press 2 to OPTION          ||");
+            System.out.println("||             Prees 0 to EXIT            ||");
             System.out.println("||========================================||");
             switch (getNumberFromKeyboard()) {
                 case 1:
@@ -117,7 +118,6 @@ public class GamePlay {
                     option();
                     break;
                 case 0:
-                    System.out.println();
                     exit = true;
                     break;
                 default:
@@ -125,19 +125,22 @@ public class GamePlay {
                     break;
             }
         } while (!exit);
+
     }
 
     public void option() {
+
         boolean exit = false;
         do {
+            System.out.println();
             System.out.println("||========================================||");
-            System.out.println("                     " + getPlayerName());
-            System.out.println("||============1.EDIT PLAYER NAME==========||");
-            System.out.println("||================Bot amount==============||");
-            System.out.println("||================= <" + (playerCount - 1 >= 10 ? playerCount - 1 + "> " : playerCount - 1 + "> =") + "================||");
-            System.out.println("||==============2.Increase Bot============||");
-            System.out.println("||==============3.Decrease Bot============||");
-            System.out.println("||==============Prees 0 to EXIT===========||");
+            printPlayerName();
+            System.out.println("||            1.EDIT PLAYER NAME          ||");
+            System.out.println("||                Bot amount              ||");
+            System.out.println("||                   <" + (playerCount - 1 >= 10 ? playerCount - 1 + "> " : playerCount - 1 + ">  ") + "                ||");
+            System.out.println("||              2.Increase Bot            ||");
+            System.out.println("||              3.Decrease Bot            ||");
+            System.out.println("||              Prees 0 to EXIT           ||");
             System.out.println("||========================================||");
             switch (getNumberFromKeyboard()) {
                 case 1:
@@ -161,16 +164,20 @@ public class GamePlay {
                     break;
             }
         } while (!exit);
+
     }
 
     public void editPlayerName() {
+        ;
         sc.nextLine();
+        System.out.println();
         System.out.println("||========================================||");
-        System.out.println("||==<< " + getPlayerName());
-        System.out.println("||===========INSERT NAME TO CHANGE========||");
+        printPlayerName();
+        System.out.println("||           INSERT NAME TO CHANGE        ||");
         System.out.println("||========================================||");
-        System.out.println("Inset your name: ");
+        System.out.print("Inset your name: ");
         player[0] = new Player(1, sc.nextLine(), null, null, null);
+
     }
 
     public void start() {
@@ -184,13 +191,15 @@ public class GamePlay {
         }
         boolean exit = false;
         do {
+            System.out.println();
             System.out.println("||========================================||");
-            System.out.println("||=================You got a==============||");
-            System.out.println("||==<<          " + player[0].getHandCard(1));
-            System.out.println("||==<<          " + player[0].getHandCard(2));
-            System.out.println("||========================================||");
+            printPlayerName();
+            System.out.println("||                 You got a              ||");
+            printCardMiddle(1);
+            printCardMiddle(2);
+            System.out.println("||                                        ||");
             System.out.println("||Press 1 If you want to draw a third card||");
-            System.out.println("||Press 0 If you want to draw a third card||");
+            System.out.println("||   Press 0 If you do not want to draw   ||");
             System.out.println("||========================================||");
             System.out.print("");
             switch (getNumberFromKeyboard()) {
@@ -204,31 +213,76 @@ public class GamePlay {
                     phase2();
                     break;
                 default:
+                    System.out.println("");
                     break;
             }
         } while (!exit);
+
     }
 
     public void phase2() {
+        
         sc.nextLine();
-        System.out.println("||========================================||");
-            System.out.println("||=================You got a==============||");
-            System.out.println("||==<<          " + player[0].getHandCard(1));
-            System.out.println("||==<<          " + player[0].getHandCard(2));
-            System.out.println("||==<<          " + player[0].getHandCard(3));
+        if (player[0].getHandCard(3) != null) {
+            System.out.println();
             System.out.println("||========================================||");
-            System.out.println("||====Press anything to show your card====||");
+            printPlayerName();
+            System.out.println("||                 You got a              ||");
+            printCardMiddle(1);
+            printCardMiddle(2);
+            printCardMiddle(3);
+            System.out.println("||                                        ||");
+            System.out.println("||    Press anything to show your card    ||");
             System.out.println("||========================================||");
-            System.out.print("");
-            System.out.print("Press anything here: ");
-            sc.nextLine();
+        } else {
+            System.out.println();
+            System.out.println("||========================================||");
+            printPlayerName();
+            System.out.println("||                 You got a              ||");
+            printCardMiddle(1);
+            printCardMiddle(2);
+            System.out.println("||                                        ||");
+            System.out.println("||    Press anything to show your card    ||");
+            System.out.println("||========================================||");
+        }
+        System.out.print("");
+        System.out.print("Press anything here: ");
+        sc.nextLine();
+        System.out.println("==Genarate Deck==");
+        cardGennarate();
+        cardRemaining = 52;
+        for (int i = 0; i < cardRemaining; i++) {
+            System.out.println(card[i]);
+        }
+        System.out.println("==Genarate Deck==");
+        System.out.println();
     }
+
     public int getNumberFromKeyboard() {
         System.out.print("Enter an integer: ");
         int getNumber = sc.nextInt();
         return getNumber;
     }
-
+    public void printPlayerName(){
+        int j=15;
+        if(getPlayerName().length()%2==0){j=16;}
+        System.out.print("||");
+        for(int i=0;i<j-(getPlayerName().length()/2);i++){System.out.print(" ");}
+        System.out.print(" =<< "+getPlayerName()+" >>= ");
+        for(int i=0;i<14-(getPlayerName().length()/2);i++){System.out.print(" ");}
+        System.out.println("||");
+    }
+    
+    public void printCardMiddle(int cardHand){
+        int j=15;
+        if(player[0].getHandCard(cardHand).toString().length()%2==0){j=16;}
+        System.out.print("||");
+        for(int i=0;i<j-(player[0].getHandCard(cardHand).toString().length()/2);i++){System.out.print(" ");}
+        System.out.print("   < "+player[0].getHandCard(cardHand).toString()+" >   ");
+        for(int i=0;i<14-(player[0].getHandCard(cardHand).toString().length()/2);i++){System.out.print(" ");}
+        System.out.println("||");
+    }
+    
     public int getCardRemaining() {
         return cardRemaining;
     }
