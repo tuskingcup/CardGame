@@ -61,13 +61,16 @@ public class GamePlay {
     }
 
     public void first() {
-        System.out.println("||========================================||");
-        System.out.println("||      WelCome to Fantastic CardGame     ||");
-        System.out.println("||                                        ||");
-        System.out.println("||             Insert Your Name           ||");
-        System.out.println("||========================================||");
-        System.out.print("Your name: ");
-        String name = sc.nextLine();
+        String name;
+        do {
+            System.out.println("||========================================||");
+            System.out.println("||      WelCome to Fantastic CardGame     ||");
+            System.out.println("||                                        ||");
+            System.out.println("||             Insert Your Name           ||");
+            System.out.println("||========================================||");
+            System.out.print("Your name not more than 35 character: ");
+            name = sc.nextLine();
+        } while (name.length() > 34);
         player[0] = new Player(1, name, null, null, null);
         for (int i = 1; i < 17; i++) {
             player[i] = new Player(i, "Bot" + i, null, null, null);
@@ -82,6 +85,8 @@ public class GamePlay {
             System.out.println();
             System.out.println("||========================================||");
             System.out.println("||      WelCome to Fantastic CardGame     ||");
+            System.out.println("||                                        ||");
+            printPlayerName();
             System.out.println("||                                        ||");
             System.out.println("||             Press 1 to PLAY            ||");
             System.out.println("||          Prees 0 to LEAVE GAME         ||");
@@ -168,15 +173,18 @@ public class GamePlay {
     }
 
     public void editPlayerName() {
-        ;
         sc.nextLine();
-        System.out.println();
-        System.out.println("||========================================||");
-        printPlayerName();
-        System.out.println("||           INSERT NAME TO CHANGE        ||");
-        System.out.println("||========================================||");
-        System.out.print("Inset your name: ");
-        player[0] = new Player(1, sc.nextLine(), null, null, null);
+        String name;
+        do {
+            System.out.println();
+            System.out.println("||========================================||");
+            printPlayerName();
+            System.out.println("||           INSERT NAME TO CHANGE        ||");
+            System.out.println("||========================================||");
+            System.out.print("Inset your name not more than 34 character: ");
+            name = sc.nextLine();
+        } while (name.length() > 34);
+        player[0] = new Player(1, name, null, null, null);
 
     }
 
@@ -221,7 +229,7 @@ public class GamePlay {
     }
 
     public void phase2() {
-        
+
         sc.nextLine();
         if (player[0].getHandCard(3) != null) {
             System.out.println();
@@ -259,30 +267,52 @@ public class GamePlay {
     }
 
     public int getNumberFromKeyboard() {
+        int getNumber = 0;
         System.out.print("Enter an integer: ");
-        int getNumber = sc.nextInt();
+        while (!sc.hasNextInt()) {
+            System.out.print("It's not integer please enter an integer: ");
+            sc.next();
+        }
+        getNumber = sc.nextInt();
         return getNumber;
     }
-    public void printPlayerName(){
-        int j=15;
-        if(getPlayerName().length()%2==0){j=16;}
+
+    public void printPlayerName() {
+        
+        int j = 17;
+        
+        if (getPlayerName().length() % 2 == 0) {
+            j = 18;
+        }
+        if(getPlayerName().length()==34){j=16;}
         System.out.print("||");
-        for(int i=0;i<j-(getPlayerName().length()/2);i++){System.out.print(" ");}
-        System.out.print(" =<< "+getPlayerName()+" >>= ");
-        for(int i=0;i<14-(getPlayerName().length()/2);i++){System.out.print(" ");}
+        for (int i = 0; i < j - (getPlayerName().length() / 2); i++) {
+            System.out.print(" ");
+        }
+        System.out.print("<< " + getPlayerName() + " >>");
+        for (int i = 0; i < 16 - (getPlayerName().length() / 2); i++) {
+            System.out.print(" ");
+        }
+        System.out.println("||");
+
+    }
+
+    public void printCardMiddle(int cardHand) {
+        int j = 15;
+        if (player[0].getHandCard(cardHand).toString().length() % 2 == 0) {
+            j = 16;
+        }
+        System.out.print("||");
+        for (int i = 0; i < j - (player[0].getHandCard(cardHand).toString().length() / 2); i++) {
+            System.out.print(" ");
+        }
+        System.out.print("   < " + player[0].getHandCard(cardHand).toString() + " >   ");
+        for (int i = 0; i < 14 - (player[0].getHandCard(cardHand).toString().length() / 2); i++) {
+            System.out.print(" ");
+        }
         System.out.println("||");
     }
-    
-    public void printCardMiddle(int cardHand){
-        int j=15;
-        if(player[0].getHandCard(cardHand).toString().length()%2==0){j=16;}
-        System.out.print("||");
-        for(int i=0;i<j-(player[0].getHandCard(cardHand).toString().length()/2);i++){System.out.print(" ");}
-        System.out.print("   < "+player[0].getHandCard(cardHand).toString()+" >   ");
-        for(int i=0;i<14-(player[0].getHandCard(cardHand).toString().length()/2);i++){System.out.print(" ");}
-        System.out.println("||");
-    }
-    
+
     public int getCardRemaining() {
         return cardRemaining;
     }
