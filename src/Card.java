@@ -27,6 +27,10 @@ public class Card {
     public String getCard(int index) {
         return cardNumber + " " +cardFace /*+" "+card[index].points+" "+card[index].points2*/;
     }
+
+    public int getPoints() {
+        return points;
+    }
     
     
     

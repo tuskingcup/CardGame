@@ -1,21 +1,21 @@
 
 public class Player {
 
-    private int playerId;
+    private final int playerId;
     private String playerName;
-    private Card handCard1 = new Card();
-    private Card handCard2= new Card();
-    private Card handCard3= new Card();
+    private Card[] handCard = new Card[3];
+    private Player[] winWho  = new Player[17];
+     private int winHead;
+    private Player[] loseWho = new Player[17];
+    private int loseHead;
+    private Player[] drawWho = new Player[17];
+    private int drawHead;
 
-    public Player(int playerId, String playerName, Card handCard1, Card handCard2, Card handCard3) {
+    public Player(int playerId, String playerName) {
         this.playerId = playerId;
         this.playerName = playerName;
-        this.handCard1 = handCard1;
-        this.handCard2 = handCard2;
-        this.handCard3 = handCard3;
-
     }
-
+   
     public int getPlayerId() {
         return playerId;
     }
@@ -25,21 +25,79 @@ public class Player {
     }
 
     
-    public void drawHand1(Card drawHand1){
-    this.handCard1=drawHand1;
+    public void drawHand(Card drawHand){
+        if(handCard[0]==null){this.handCard[0]=drawHand;}
+        else if(handCard[1]==null){this.handCard[1]=drawHand;}
+        else if(handCard[2]==null){this.handCard[2]=drawHand;}
+        else{}
     }
     
-    public void drawHand2(Card drawHand2){
-    this.handCard2=drawHand2;
+    public void returnAllCard(){
+    this.handCard[0] = null;
+    this.handCard[1] = null;
+    this.handCard[2] = null;}
+    
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
     
-    public void drawHand3(Card drawHand3){
-    this.handCard3=drawHand3;
+    public int getAllPoints(){
+        int allPoints = 0 ;
+    if(handCard[0]!=null&&handCard[1]!=null&&handCard[2]!=null){allPoints= this.handCard[0].getPoints()+this.handCard[1].getPoints()+this.handCard[2].getPoints();}
+    else if(handCard[0]!=null&&handCard[1]!=null&&handCard[2]==null){allPoints= this.handCard[0].getPoints()+this.handCard[1].getPoints();}
+    else if(handCard[0]!=null&&handCard[1]==null&&handCard[2]==null){allPoints= this.handCard[0].getPoints();}
+    else{return 0;}
+    
+    return allPoints%10;
     }
-
+    
     public Card getHandCard(int hand) {
-        return hand==1?handCard1:hand==2?handCard2:handCard3;
+        return hand==0?handCard[0]:hand==1?handCard[1]:handCard[2];
     }
 
+    public void win(Player who) {
+        winWho[winHead] = who;
+        winHead++;
+    }
+     public void lose(Player who) {
+        loseWho[loseHead] = who;
+        loseHead++;
+    }
+      public void draw(Player who) {
+        drawWho[drawHead] = who;
+        drawHead++;
+    }
 
+    public Player getWinWho(int i) {
+        return winWho[i];
+    }
+
+    public Player getLoseWho(int i) {
+        return loseWho[i];
+    }
+      public Player getDrawWho(int i) {
+        return drawWho[i];
+    }
+
+    public int getWinHead() {
+        return winHead;
+    }
+
+    public int getLoseHead() {
+        return loseHead;
+    }
+
+    public int getDrawHead() {
+        return drawHead;
+    }
+    public void resetWinLoseDraw(){
+    for(int i=0;i<winHead;i++){this.winWho[i]=null;}
+    for(int i=0;i<loseHead;i++){this.loseWho[i]=null;}
+    for(int i=0;i<drawHead;i++){this.drawWho[i]=null;}
+    winHead=0;
+    loseHead=0;
+    drawHead=0;
+}
+      
+      
 }
