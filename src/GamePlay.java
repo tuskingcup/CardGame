@@ -160,7 +160,8 @@ public class GamePlay {
 //            System.out.println("||                                        ||");
             System.out.println("||             2.Play as dealer           ||");
             System.out.println("||             3.Play as player           ||");
-            System.out.println("||              4.Bot setting             ||");
+            if(mode==Mode.dealer){
+            System.out.println("||              4.Bot setting             ||");}
             System.out.println("||              Prees 0 to EXIT           ||");
             System.out.println("||========================================||");
             switch (getNumberFromKeyboard()) {
@@ -176,7 +177,8 @@ public class GamePlay {
                     player[playerCount - 1].setPlayerName("DealerBot");
                     break;
                 case 4:
-                    botSetting();
+                    if(mode==Mode.dealer){
+                    botSetting();}
                     break;
                 case 0:
                     exit = true;

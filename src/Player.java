@@ -30,6 +30,7 @@ public class Player {
         else if(handCard[1]==null){this.handCard[1]=drawHand;}
         else if(handCard[2]==null){this.handCard[2]=drawHand;}
         else{}
+        
     }
     
     public void returnAllCard(){
