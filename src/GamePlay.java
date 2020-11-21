@@ -160,9 +160,10 @@ public class GamePlay {
 //            System.out.println("||                                        ||");
             System.out.println("||             2.Play as dealer           ||");
             System.out.println("||             3.Play as player           ||");
-            if(mode==Mode.dealer){
-            System.out.println("||              4.Bot setting             ||");}
-            System.out.println("||              Prees 0 to EXIT           ||");
+            if (mode == Mode.dealer) {
+                System.out.println("||              4.Bot setting             ||");
+            }
+            System.out.println("||             Prees 0 to EXIT            ||");
             System.out.println("||========================================||");
             switch (getNumberFromKeyboard()) {
                 case 1:
@@ -177,8 +178,9 @@ public class GamePlay {
                     player[playerCount - 1].setPlayerName("DealerBot");
                     break;
                 case 4:
-                    if(mode==Mode.dealer){
-                    botSetting();}
+                    if (mode == Mode.dealer) {
+                        botSetting();
+                    }
                     break;
                 case 0:
                     exit = true;
@@ -256,53 +258,57 @@ public class GamePlay {
             printCardMiddle(player[0], 1);
             System.out.println("||                                        ||");
             if (mode == Mode.dealer) {
-                if (player[0].getAllPoints() == 8 || player[0].getAllPoints() == 9) {
+                if (player[0].getAllPoints() >= 8) {
                 } else {
                     System.out.println("||Press 1 If you want to draw a third card||");
                 }
-            }
-            else if (mode == Mode.player) {
-                if (player[playerCount - 1].getAllPoints() == 8 || player[playerCount - 1].getAllPoints() == 9) {
+            } else if (mode == Mode.player) {
+                if (player[1].getAllPoints() >= 8) {
                 } else {
                     System.out.println("||Press 1 If you want to draw a third card||");
                 }
             }
             if (mode == Mode.dealer) {
-                if (player[0].getAllPoints() == 8 || player[0].getAllPoints() == 9) {
+                if (player[0].getAllPoints() >= 8) {
                     System.out.println("||            You have " + player[0].getAllPoints() + " Points           ||");
                     System.out.println("||    Press anything to show your card    ||");
-                    result();
-                    break;
                 } else {
                     System.out.println("||   Press 0 If you do not want to draw   ||");
                 }
-            }
-            else if (mode == Mode.player) {
-                if (player[playerCount - 1].getAllPoints() == 8 || player[playerCount - 1].getAllPoints() == 9) {
+            } else if (mode == Mode.player) {
+                if (player[1].getAllPoints() >= 8) {
                     System.out.println("||         A Dealer have " + player[1].getAllPoints() + " Points         ||");
                     System.out.println("||    Press anything to show your card    ||");
-                    result();
-                    break;
                 } else {
                     System.out.println("||   Press 0 If you do not want to draw   ||");
                 }
             }
             System.out.println("||========================================||");
             System.out.print("");
+            if (mode == Mode.dealer) {
+                if (player[0].getAllPoints() >= 8) {
+                    
+                    System.out.print("Press anything here: ");
+                    sc.nextLine();
+                    result();
+                    break;
+                    
+                }
+            }
+            if (mode == Mode.player) {
+                if (player[1].getAllPoints() >= 8) {
+                    
+                    System.out.print("Press anything here: ");
+                    
+                    sc.nextLine();
+                    result();
+                    break;
+                    
+                }
+            }
             switch (getNumberFromKeyboard()) {
                 case 1:
-                    if (mode == Mode.dealer) {
-                        if (player[0].getAllPoints() == 8 || player[0].getAllPoints() == 9) {
-                        } else {
-                            this.player[0].drawHand(drawCard(0));
-                        }
-                    }
-                    if (mode == Mode.player) {
-                        if (player[playerCount - 1].getAllPoints() == 8 || player[playerCount - 1].getAllPoints() == 9) {
-                        } else {
-                            this.player[0].drawHand(drawCard(0));
-                        }
-                    }
+                    this.player[0].drawHand(drawCard(0));
                     phase2();
                     exit = true;
                     break;
@@ -311,6 +317,7 @@ public class GamePlay {
                     phase2();
                     break;
                 default:
+
                     System.out.println("");
                     break;
             }
@@ -319,31 +326,21 @@ public class GamePlay {
     }
 
     public void phase2() {
-        
+
         sc.nextLine();
         botDraw();
-        if (player[0].getHandCard(3) != null) {
-            System.out.println();
-            System.out.println("||========================================||");
-            printPlayerName(0);
-            System.out.println("||                 You got a              ||");
-            printCardMiddle(player[0], 0);
-            printCardMiddle(player[0], 1);
+        System.out.println();
+        System.out.println("||========================================||");
+        printPlayerName(0);
+        System.out.println("||                 You got a              ||");
+        printCardMiddle(player[0], 0);
+        printCardMiddle(player[0], 1);
+        if (player[0].getHandCard(2) != null) {
             printCardMiddle(player[0], 2);
-            System.out.println("||                                        ||");
-            System.out.println("||    Press anything to show your card    ||");
-            System.out.println("||========================================||");
-        } else {
-            System.out.println();
-            System.out.println("||========================================||");
-            printPlayerName(0);
-            System.out.println("||                 You got a              ||");
-            printCardMiddle(player[0], 0);
-            printCardMiddle(player[0], 1);
-            System.out.println("||                                        ||");
-            System.out.println("||    Press anything to show your card    ||");
-            System.out.println("||========================================||");
         }
+        System.out.println("||                                        ||");
+        System.out.println("||    Press anything to show your card    ||");
+        System.out.println("||========================================||");
         System.out.print("");
         System.out.print("Press anything here: ");
         sc.nextLine();
@@ -351,13 +348,24 @@ public class GamePlay {
     }
 
     public void result() {
-
+        if (mode == Mode.dealer) {
+            if (player[0].getAllPoints() >= 8) {
+                sc.nextLine();
+            }
+        }
+        if (mode == Mode.player) {
+            if (player[1].getAllPoints() >= 8) {
+                sc.nextLine();
+            }
+        }
         System.out.println();
         System.out.println("||========================================||");
         printPlayerName(0);
         printCardMiddle(player[0], 0);
         printCardMiddle(player[0], 1);
-        if(player[0].getHandCard(2)!=null){printCardMiddle(player[0], 2);}
+        if (player[0].getHandCard(2) != null) {
+            printCardMiddle(player[0], 2);
+        }
         System.out.println("||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^||");
         resultCheck();
         System.out.println("||    Press anything to return to home    ||");
@@ -365,20 +373,18 @@ public class GamePlay {
         System.out.print("Press anything here: ");
         sc.nextLine();
         reset();
-        
+
     }
 
     public void resultCheck() {
-        int head = 1;
-        if(mode==Mode.dealer){
-           
-                dealerWinLose();
+        if (mode == Mode.dealer) {
+
+            dealerWinLose();
+        } else {
+            playerWinLose();
+
         }
-        else{
-                playerWinLose();
-                
-        }
-        if (player[0].getWinWho(0) != null) {
+        if (player[0].getWinHead() != 0) {
             System.out.println("||||||||||||||||||||You win|||||||||||||||||");
             for (int i = 0; i < player[0].getWinHead(); i++) {
                 printBot(player[0].getWinWho(i));
@@ -390,7 +396,7 @@ public class GamePlay {
             }
             System.out.println("||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^||");
         }
-        if(player[0].getLoseWho(0) != null) {
+        if (player[0].getLoseHead() != 0) {
             System.out.println("|||||||||||||||||||You lose|||||||||||||||||");
             for (int i = 0; i < player[0].getLoseHead(); i++) {
                 printBot(player[0].getLoseWho(i));
@@ -402,7 +408,7 @@ public class GamePlay {
             }
             System.out.println("||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^||");
         }
-        if (player[0].getDrawWho(0) != null) {
+        if (player[0].getDrawHead() != 0) {
             System.out.println("||||||||||||||||||You draw||||||||||||||||||");
             for (int i = 0; i < player[0].getDrawHead(); i++) {
                 printBot(player[0].getDrawWho(i));
@@ -470,6 +476,7 @@ public class GamePlay {
         System.out.println("||");
 
     }
+
     public void printBot(Player who) {
 
         int j = 17;
@@ -532,18 +539,19 @@ public class GamePlay {
         }
         System.out.println("==Genarate Deck==");
     }
-    public void reset(){
-    cardGennarate();
-    returnAllCard();
-    player[0].resetWinLoseDraw();
-    printAllCard();
+
+    public void reset() {
+        cardGennarate();
+        returnAllCard();
+        player[0].resetWinLoseDraw();
+        printAllCard();
         System.out.println(player[1].getAllPoints());
     }
-    
-    public void botDraw(){
+
+    public void botDraw() {
         for (int player = 1; player < playerCount; player++) {
-            if(this.player[player].getAllPoints()<=5){
-            this.player[player].drawHand(drawCard(player));
+            if (this.player[player].getAllPoints() <= 5) {
+                this.player[player].drawHand(drawCard(player));
             }
         }
     }

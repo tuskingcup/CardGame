@@ -92,9 +92,6 @@ public class Player {
         return drawHead;
     }
     public void resetWinLoseDraw(){
-    for(int i=0;i<winHead;i++){this.winWho[i]=null;}
-    for(int i=0;i<loseHead;i++){this.loseWho[i]=null;}
-    for(int i=0;i<drawHead;i++){this.drawWho[i]=null;}
     winHead=0;
     loseHead=0;
     drawHead=0;
