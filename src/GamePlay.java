@@ -34,7 +34,6 @@ public class GamePlay {
             int cardGet = randomCard();
             String cardRealyGet = getCard(cardGet);
             cardRemaining--;
-            //เอาการ์ดออก-----------------------------------
             Card[] newDeck = new Card[cardRemaining];
             for (int i = 0; i < cardRemaining + 1; i++) {
                 if (i < cardGet) {
@@ -45,7 +44,6 @@ public class GamePlay {
                 }
             }
             System.arraycopy(newDeck, 0, card, 0, cardRemaining);
-            //เอาการ์ดออก------------------------------------
             return card[cardGet];
         } else {
             return this.player[player].getHandCard(2) != null ? this.player[player].getHandCard(2) : this.player[player].getHandCard(1) != null ? this.player[player].getHandCard(1) : this.player[player].getHandCard(0);
@@ -154,10 +152,8 @@ public class GamePlay {
             System.out.println("||========================================||");
             printPlayerName(0);
             System.out.println("||            1.EDIT PLAYER NAME          ||");
-//            System.out.println("||                                        ||");
             System.out.println("||                You are now             ||");
             System.out.println("||         " + markDealer + "        " + markPlayer + "       ||");
-//            System.out.println("||                                        ||");
             System.out.println("||             2.Play as dealer           ||");
             System.out.println("||             3.Play as player           ||");
             if (mode == Mode.dealer) {
@@ -343,18 +339,18 @@ public class GamePlay {
         System.out.println("||========================================||");
         System.out.print("");
         System.out.print("Press anything here: ");
-        sc.nextLine();
+       sc.nextLine();
         result();
     }
 
     public void result() {
         if (mode == Mode.dealer) {
-            if (player[0].getAllPoints() >= 8) {
+            if (player[0].getAllPoints() >= 8&&player[0].handAmount()==2) {
                 sc.nextLine();
             }
         }
         if (mode == Mode.player) {
-            if (player[1].getAllPoints() >= 8) {
+            if (player[1].getAllPoints() >= 8&&player[1].handAmount()==2) {
                 sc.nextLine();
             }
         }
@@ -544,7 +540,7 @@ public class GamePlay {
         cardGennarate();
         returnAllCard();
         player[0].resetWinLoseDraw();
-        printAllCard();
+        
         System.out.println(player[1].getAllPoints());
     }
 
