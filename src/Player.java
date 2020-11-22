@@ -9,7 +9,7 @@ public class Player {
     private String playerName;
     private Card[] handCard = new Card[3];
     private Player[] winWho  = new Player[17];
-     private int winHead;
+    private int winHead;
     private Player[] loseWho = new Player[17];
     private int loseHead;
     private Player[] drawWho = new Player[17];
@@ -21,21 +21,21 @@ public class Player {
     }
    
 /**returns the number of player id.
-*@return number of playerId
+*@return int number value of playerId
  */   
     public int getPlayerId() {
         return playerId;
     }
 
 /**returns the char of player name.
-*@return char of playerName
+*@return String char of playerName
  */
     public String getPlayerName() {
         return playerName;
     }
 
-/**returns 
-*@param drawHand of the Card value
+/**this method use to descripe cards on hand 
+*@param drawHand this is the parameter for drawHand
  */    
     public void drawHand(Card drawHand){
         if(handCard[0]==null){this.handCard[0]=drawHand;}
@@ -44,21 +44,22 @@ public class Player {
         else{}
     }
 
-/**returns the char value of all cards.
+/**this method use to reset cards on hand
  */    
     public void returnAllCard(){
     this.handCard[0] = null;
     this.handCard[1] = null;
     this.handCard[2] = null;}
     
-/**returns the char value of player name.
+/**this method use to set platername
+ * @param playerName is parameter in setPlayerName use to get new player name
  */    
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
 
 /**returns the number value of all card point.
-*@return number value of allPoints
+*@return int number value of allPoints
  */    
     public int getAllPoints(){
         int allPoints = 0 ;
@@ -71,32 +72,32 @@ public class Player {
     }
     
 /**returns the char value of card in player hand.
-*@param hand of number value
-*@return char value of handCard or return null
+*@param hand is parameter in getHandCard use as card on hand
+*@return int number value of card on hand if not have any return null
  */    
     public Card getHandCard(int hand) {
         if(handCard[hand]!=null) return handCard[hand];
         else return null;
     }
     
-/**returns the char value of player who player won.
-*@param who of the Player value 
+/**this method use to get the name of winner
+*@param who is parameter in win as a name of winner
  */
     public void win(Player who) {
         winWho[winHead] = who;
         winHead++;
     }
 
-/**returns the char value of player who player lose.
-*@param who of the Player value 
+/**this method use to het the name of loser
+*@param who use to get the name of loser 
  */    
      public void lose(Player who) {
         loseWho[loseHead] = who;
         loseHead++;
     }
 
-/**returns the char value of player who player draw.
-*@param who of the Player value 
+/**this method is use when there is no winner
+*@param who is parameter in draw when no winner
  */    
       public void draw(Player who) {
         drawWho[drawHead] = who;
@@ -104,52 +105,51 @@ public class Player {
     }
 
 /**returns the char value of player win who.
-*@param i of the number value
-*@return char value of who player won
+*@param i is parameter use to refer to winner
+*@return int of the winner
  */
     public Player getWinWho(int i) {
         return winWho[i];
     }
 
 /**returns the char value of player lose who.
-*@param i of the number value
-*@return char value of who player lose
+*@param i is parameter use to refer to loser
+*@return int of theloser
  */
     public Player getLoseWho(int i) {
         return loseWho[i];
     }
 
  /**returns the char value of player draw who.
-*@param i of the number value
-*@return char value of who player draw
- */   
+*@param i is parameter use to refer to no winner
+*@return int of the draw
+ */  
       public Player getDrawWho(int i) {
         return drawWho[i];
     }
 
 /**returns the number value of win head.
-**@return number value of winHead  
+**@return int when the dealer win 
  */
     public int getWinHead() {
         return winHead;
     }
 
 /**returns the number value of lose head.
-*@return number value of loseHead
+*@return int when the dealer lose
  */
     public int getLoseHead() {
         return loseHead;
     }
 
 /**returns the number value of draw head.
-*@return number value of drawHead
+*@return int when the dealer draw
  */
     public int getDrawHead() {
         return drawHead;
     }
 
-/**returns the number value of win lose draw.
-*@return the number value of winHead loseHead drawnHead = 0
+/**this method use to reset Win/Lose of the dealer
  */    
     public void resetWinLoseDraw(){
     winHead=0;

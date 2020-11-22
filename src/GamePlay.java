@@ -19,7 +19,8 @@ public class GamePlay {
         this.mode = Mode.dealer;
         cardGennarate();
     }
-/**returns the char value of card. 
+/**this method is use to describe card face as char
+@return nothing
  */
     public void cardGennarate() {
         int count = 0;
@@ -33,9 +34,10 @@ public class GamePlay {
         }
         cardRemaining = 52;
     }
-/**returns the char value of card.
-*@param number value of player
-*@return char  value of card face
+/**this method is use when returns the char value of card.
+ * decrease card remaining when use getCard
+*@param player is the player who draw the card
+*@return int value of card face
  */
     public Card drawCard(int player) {
         if (cardRemaining > 0) {
@@ -61,20 +63,21 @@ public class GamePlay {
 
     }
 /**returns the char value of card.
-*@return number value of cardRemaining
+*@return int number value of cardRemaining
  */
     private int randomCard() {
         return (int) ((Math.random() * cardRemaining));
     }
 
 /**returns the char value of card face and number value of card.
-*@return char value and number of card
+ * @param index is parameter that add to getCard
+*@return int This return the sum of cardNumber and cardFace
  */
     public String getCard(int index) {
         return card[index].getCardNumber() + " " + card[index].getCardFace()/*+" "+card[index].points+" "+card[index].points2*/;
     }
 
-/**returns the char value of player name.
+/**This method use to print game menu and set your name
  */
     public void first() {
         String name;
@@ -93,7 +96,8 @@ public class GamePlay {
         }
         home();
     }
-/**returns the char value of choce. 
+/**This method is use to show your name
+ * and display choices and get your selection from keyboard
  */
     public void home() {
 
@@ -121,7 +125,8 @@ public class GamePlay {
             }
         } while (!exit);
     }
-/**returns the char value of choce.
+/**this method use to show the choices for u
+ * and get the choice from your keyboard
  */
     public void play() {
 
@@ -151,7 +156,7 @@ public class GamePlay {
 
     }
 
-/**returns the char value of choce.
+/**this method use to show the choice between dealer and player
  */
     public void option() {
         String markDealer = "|DEALER|";
@@ -169,7 +174,7 @@ public class GamePlay {
                     break;
             }
 
-/**returns the char value of choce.
+/**this method use to show result choice which you select
  */
             System.out.println();
             System.out.println("||========================================||");
@@ -210,7 +215,7 @@ public class GamePlay {
 
     }
 
-/**returns the char value of choce.
+/**this method use to set amount of bot player
  */
     public void botSetting() {
         boolean exit = false;
@@ -243,7 +248,7 @@ public class GamePlay {
         } while (!exit);
     }
     
-/**returns the char value of edit player name.
+/**this method use to get input from keyboard to change the name
  */
     public void editPlayerName() {
         sc.nextLine();
@@ -260,7 +265,8 @@ public class GamePlay {
         player[0].setPlayerName(name);
     }
 
-/**returns the char and number value of card.
+/**this method use to tell the card you get in first phase
+ * and ask if you want to get more card or not
  */
     public void start() {
 
@@ -341,7 +347,7 @@ public class GamePlay {
 
     }
 
-/**returns the char and number value of card.
+/**this method show your card if you draw
  */
     public void phase2() {
 
@@ -375,7 +381,7 @@ public class GamePlay {
         result();
     }
 
-/**returns the char value of card on player hand.
+/**This method is use for reset everything and return to home
  */
     public void result() {
 
@@ -397,7 +403,7 @@ public class GamePlay {
 
     }
 
-/**returns the char value of win lose and draw of player.
+/**This method use to show if you lose or win as a dealer
  */
     public void resultCheck() {
         int head = 1;
@@ -446,8 +452,7 @@ public class GamePlay {
         }
     }
 
-/**returns the number value of all point.
-*@return the char value of win lose 
+/**This method is show that dealer win or lose 
  */
     public void dealerWinLose() {
         for (int i = 1; i < playerCount; i++) {
@@ -461,7 +466,7 @@ public class GamePlay {
         }
     }
 
-/**returns the char value of player win and lose.
+/**this method is show if players win or lose
  */
     public void playerWinLose() {
         if (player[0].getAllPoints() < player[1].getAllPoints()) {
@@ -473,7 +478,8 @@ public class GamePlay {
         }
     }
 
-/**returns the number value of getNumber.
+/**returns int number value of getNumber.
+ * @return int number value of getNumber.
  */
     public int getNumberFromKeyboard() {
         int getNumber = 0;
@@ -485,7 +491,9 @@ public class GamePlay {
         getNumber = sc.nextInt();
         return getNumber;
     }
-
+/**
+ *@param who is a parameter that represent player
+ */
     public void printPlayerName(int who) {
 
         int j = 17;
@@ -507,7 +515,9 @@ public class GamePlay {
         System.out.println("||");
 
     }
-
+/**this method is represent to bot
+ *@param who is represent to bot player
+ */
     public void printBot(Player who) {
 
         int j = 17;
@@ -530,7 +540,7 @@ public class GamePlay {
 
     }
 
-/**returns 
+/**This method is use to print card on players hand to mid
  */
     public void printCardMiddle(Player who, int cardHand) {
         int j = 15;
@@ -548,7 +558,7 @@ public class GamePlay {
         System.out.println("||");
     }
 
-/**returns the char value of all card on player hand.
+/**this method is return all card to deck
  */
     public void returnAllCard() {
         for (int i = 0; i < playerCount; i++) {
@@ -557,20 +567,20 @@ public class GamePlay {
     }
 
 /**returns the number value of card remaining.
-*@return the number of card remaining
+*@return int amount of card remain
  */
     public int getCardRemaining() {
         return cardRemaining;
     }
 
 /**returns the char value of player name.
-*@return char value of all player name
+*@return int value of all player name refer to char of playername
  */
     public String getPlayerName(int i) {
         return player[i].getPlayerName();
     }
 
-/**returns the char value of all card.
+/**this method is reset card on hand and reset deck
  */
     public void printAllCard() {
         System.out.println("==Genarate Deck==");
@@ -583,7 +593,7 @@ public class GamePlay {
         System.out.println("==Genarate Deck==");
     }
 
-/**returns 
+/**this method is use to reset win and lose
  */
     public void reset() {
         cardGennarate();
@@ -593,7 +603,8 @@ public class GamePlay {
         System.out.println(player[1].getAllPoints());
     }
 
-/**returns the char value of card draw.
+/**this method is use when bot draw a card
+ * when they has point below or equal to 5
  */
     public void botDraw() {
         for (int player = 1; player < playerCount; player++) {
