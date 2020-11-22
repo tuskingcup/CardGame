@@ -3,62 +3,17 @@ import java.util.Scanner;
 
 public class GamePlay {
 
-    private final Card[] card = new Card[52];
+    private Deck deck = new Deck();
     private final Player[] player = new Player[17];
     private int playerCount = 2;
     private int cardRemaining;
-    private int round;
     private Mode mode;
     Scanner sc = new Scanner(System.in);
 
     public GamePlay() {
         this.mode = Mode.dealer;
-        cardGennarate();
+        deck.cardGennarate();
     }
-
-    public void cardGennarate() {
-        int count = 0;
-        for (int num = 1; num <= 13; num++) {
-            for (int face = 1; face <= 4; face++) {
-                card[count] = new Card(num == 1 ? "Ace" : num == 11 ? "Jack" : num == 12 ? "Queen" : num == 13 ? "King" : Integer.toString(num),
-                        face == 1 ? "Clubs" : face == 2 ? "Diamonds" : face == 3 ? "Hearts" : "Spades",
-                        num > 10 ? 0 : num, face);
-                count++;
-            }
-        }
-        cardRemaining = 52;
-    }
-
-    public Card drawCard(int player) {
-        if (cardRemaining > 0) {
-            int cardGet = randomCard();
-            String cardRealyGet = getCard(cardGet);
-            cardRemaining--;
-            Card[] newDeck = new Card[cardRemaining];
-            for (int i = 0; i < cardRemaining + 1; i++) {
-                if (i < cardGet) {
-                    newDeck[i] = card[i];
-                } else if (i > cardGet) {
-                    newDeck[i - 1] = card[i];
-                } else {
-                }
-            }
-            System.arraycopy(newDeck, 0, card, 0, cardRemaining);
-            return card[cardGet];
-        } else {
-            return this.player[player].getHandCard(2) != null ? this.player[player].getHandCard(2) : this.player[player].getHandCard(1) != null ? this.player[player].getHandCard(1) : this.player[player].getHandCard(0);
-        }
-
-    }
-
-    private int randomCard() {
-        return (int) ((Math.random() * cardRemaining));
-    }
-
-    public String getCard(int index) {
-        return card[index].getCardNumber() + " " + card[index].getCardFace()/*+" "+card[index].points+" "+card[index].points2*/;
-    }
-
     public void first() {
         String name;
         do {
@@ -167,11 +122,11 @@ public class GamePlay {
                     break;
                 case 2:
                     this.mode = Mode.dealer;
-                    player[playerCount - 1].setPlayerName("Bot" + playerCount + 1);
+                    player[1].setPlayerName("Bot1");
                     break;
                 case 3:
                     this.mode = Mode.player;
-                    player[playerCount - 1].setPlayerName("DealerBot");
+                    player[1].setPlayerName("DealerBot");
                     break;
                 case 4:
                     if (mode == Mode.dealer) {
@@ -238,11 +193,11 @@ public class GamePlay {
     public void start() {
 
         for (int player = 0; player < playerCount; player++) {
-            this.player[player].drawHand(drawCard(player));
+            this.player[player].drawHand(deck.drawCard(player));
         }
 
         for (int player = 0; player < playerCount; player++) {
-            this.player[player].drawHand(drawCard(player));
+            this.player[player].drawHand(deck.drawCard(player));
         }
         boolean exit = false;
         do {
@@ -304,7 +259,7 @@ public class GamePlay {
             }
             switch (getNumberFromKeyboard()) {
                 case 1:
-                    this.player[0].drawHand(drawCard(0));
+                    this.player[0].drawHand(deck.drawCard(0));
                     phase2();
                     exit = true;
                     break;
@@ -525,29 +480,18 @@ public class GamePlay {
         return player[i].getPlayerName();
     }
 
-    public void printAllCard() {
-        System.out.println("==Genarate Deck==");
-        cardGennarate();
-        returnAllCard();
-        cardRemaining = 52;
-        for (int i = 0; i < cardRemaining; i++) {
-            System.out.println(card[i]);
-        }
-        System.out.println("==Genarate Deck==");
-    }
+  
 
     public void reset() {
-        cardGennarate();
+        deck.cardGennarate();
         returnAllCard();
         player[0].resetWinLoseDraw();
-        
-        System.out.println(player[1].getAllPoints());
     }
 
     public void botDraw() {
         for (int player = 1; player < playerCount; player++) {
             if (this.player[player].getAllPoints() <= 5) {
-                this.player[player].drawHand(drawCard(player));
+                this.player[player].drawHand(deck.drawCard(player));
             }
         }
     }

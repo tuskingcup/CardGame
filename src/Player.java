@@ -37,15 +37,16 @@ public class Player {
     }
 
     public void drawHand(Card drawHand) {
-        if (handCard[0] == null) {
-            this.handCard[0] = drawHand;
-        } else if (handCard[1] == null) {
-            this.handCard[1] = drawHand;
-        } else if (handCard[2] == null) {
-            this.handCard[2] = drawHand;
-        } else {
+        if (drawHand != null) {
+            if (handCard[0] == null) {
+                this.handCard[0] = drawHand;
+            } else if (handCard[1] == null) {
+                this.handCard[1] = drawHand;
+            } else if (handCard[2] == null) {
+                this.handCard[2] = drawHand;
+            } else {
+            }
         }
-
     }
 
     public void returnAllCard() {
