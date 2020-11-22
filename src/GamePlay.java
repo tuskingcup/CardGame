@@ -1,4 +1,8 @@
 
+/**
+*[H1]Thisi is a GamePlay class[/H1]
+*It has playerCount cardRemaining round mode Array Card and Player
+ */
 import java.util.Scanner;
 
 public class GamePlay {
@@ -15,7 +19,8 @@ public class GamePlay {
         this.mode = Mode.dealer;
         cardGennarate();
     }
-
+/**returns the char value of card. 
+ */
     public void cardGennarate() {
         int count = 0;
         for (int num = 1; num <= 13; num++) {
@@ -28,13 +33,16 @@ public class GamePlay {
         }
         cardRemaining = 52;
     }
-
+/**returns the char value of card.
+*@param number value of player
+*@return char  value of card face
+ */
     public Card drawCard(int player) {
         if (cardRemaining > 0) {
             int cardGet = randomCard();
             String cardRealyGet = getCard(cardGet);
             cardRemaining--;
-            //เอาการ์ดออก-----------------------------------
+            
             Card[] newDeck = new Card[cardRemaining];
             for (int i = 0; i < cardRemaining + 1; i++) {
                 if (i < cardGet) {
@@ -45,22 +53,29 @@ public class GamePlay {
                 }
             }
             System.arraycopy(newDeck, 0, card, 0, cardRemaining);
-            //เอาการ์ดออก------------------------------------
+            
             return card[cardGet];
         } else {
             return this.player[player].getHandCard(2) != null ? this.player[player].getHandCard(2) : this.player[player].getHandCard(1) != null ? this.player[player].getHandCard(1) : this.player[player].getHandCard(0);
         }
 
     }
-
+/**returns the char value of card.
+*@return number value of cardRemaining
+ */
     private int randomCard() {
         return (int) ((Math.random() * cardRemaining));
     }
 
+/**returns the char value of card face and number value of card.
+*@return char value and number of card
+ */
     public String getCard(int index) {
         return card[index].getCardNumber() + " " + card[index].getCardFace()/*+" "+card[index].points+" "+card[index].points2*/;
     }
 
+/**returns the char value of player name.
+ */
     public void first() {
         String name;
         do {
@@ -78,7 +93,8 @@ public class GamePlay {
         }
         home();
     }
-
+/**returns the char value of choce. 
+ */
     public void home() {
 
         boolean exit = false;
@@ -105,7 +121,8 @@ public class GamePlay {
             }
         } while (!exit);
     }
-
+/**returns the char value of choce.
+ */
     public void play() {
 
         boolean exit = false;
@@ -134,6 +151,8 @@ public class GamePlay {
 
     }
 
+/**returns the char value of choce.
+ */
     public void option() {
         String markDealer = "|DEALER|";
         String markPlayer = " PLAYER ";
@@ -150,6 +169,8 @@ public class GamePlay {
                     break;
             }
 
+/**returns the char value of choce.
+ */
             System.out.println();
             System.out.println("||========================================||");
             printPlayerName(0);
@@ -189,6 +210,8 @@ public class GamePlay {
 
     }
 
+/**returns the char value of choce.
+ */
     public void botSetting() {
         boolean exit = false;
         do {
@@ -219,7 +242,9 @@ public class GamePlay {
             }
         } while (!exit);
     }
-
+    
+/**returns the char value of edit player name.
+ */
     public void editPlayerName() {
         sc.nextLine();
         String name;
@@ -235,6 +260,8 @@ public class GamePlay {
         player[0].setPlayerName(name);
     }
 
+/**returns the char and number value of card.
+ */
     public void start() {
 
         for (int player = 0; player < playerCount; player++) {
@@ -314,11 +341,13 @@ public class GamePlay {
 
     }
 
+/**returns the char and number value of card.
+ */
     public void phase2() {
 
         sc.nextLine();
         botDraw();
-        if (player[0].getHandCard(3) != null) {
+        if (player[0].getHandCard(2) != null) {
             System.out.println();
             System.out.println("||========================================||");
             printPlayerName(0);
@@ -346,6 +375,8 @@ public class GamePlay {
         result();
     }
 
+/**returns the char value of card on player hand.
+ */
     public void result() {
 
         System.out.println();
@@ -366,6 +397,8 @@ public class GamePlay {
 
     }
 
+/**returns the char value of win lose and draw of player.
+ */
     public void resultCheck() {
         int head = 1;
         if (mode == Mode.dealer) {
@@ -413,6 +446,9 @@ public class GamePlay {
         }
     }
 
+/**returns the number value of all point.
+*@return the char value of win lose 
+ */
     public void dealerWinLose() {
         for (int i = 1; i < playerCount; i++) {
             if (player[0].getAllPoints() < player[i].getAllPoints()) {
@@ -425,6 +461,8 @@ public class GamePlay {
         }
     }
 
+/**returns the char value of player win and lose.
+ */
     public void playerWinLose() {
         if (player[0].getAllPoints() < player[1].getAllPoints()) {
             player[0].lose(player[1]);
@@ -435,6 +473,8 @@ public class GamePlay {
         }
     }
 
+/**returns the number value of getNumber.
+ */
     public int getNumberFromKeyboard() {
         int getNumber = 0;
         System.out.print("Enter an integer: ");
@@ -490,6 +530,8 @@ public class GamePlay {
 
     }
 
+/**returns 
+ */
     public void printCardMiddle(Player who, int cardHand) {
         int j = 15;
         if (who.getHandCard(cardHand).toString().length() % 2 == 0) {
@@ -506,20 +548,30 @@ public class GamePlay {
         System.out.println("||");
     }
 
+/**returns the char value of all card on player hand.
+ */
     public void returnAllCard() {
         for (int i = 0; i < playerCount; i++) {
             player[i].returnAllCard();
         }
     }
 
+/**returns the number value of card remaining.
+*@return the number of card remaining
+ */
     public int getCardRemaining() {
         return cardRemaining;
     }
 
+/**returns the char value of player name.
+*@return char value of all player name
+ */
     public String getPlayerName(int i) {
         return player[i].getPlayerName();
     }
 
+/**returns the char value of all card.
+ */
     public void printAllCard() {
         System.out.println("==Genarate Deck==");
         cardGennarate();
@@ -531,6 +583,8 @@ public class GamePlay {
         System.out.println("==Genarate Deck==");
     }
 
+/**returns 
+ */
     public void reset() {
         cardGennarate();
         returnAllCard();
@@ -539,6 +593,8 @@ public class GamePlay {
         System.out.println(player[1].getAllPoints());
     }
 
+/**returns the char value of card draw.
+ */
     public void botDraw() {
         for (int player = 1; player < playerCount; player++) {
             if (this.player[player].getAllPoints() <= 5) {
