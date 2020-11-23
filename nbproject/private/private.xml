@@ -1,10 +1,8 @@
-<<<<<<< OURS
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/CardGame/src/GamePlay.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/CardGame/src/Player.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/CardGame/src/Card.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/CardGame/src/CardGame.java</file>
@@ -12,17 +10,3 @@
         </group>
     </open-files>
 </project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/CLinicIT/Documents/NetBeansProjects/newCard/CardGame/src/CardGame.java</file>
-            <file>file:/C:/Users/CLinicIT/Documents/NetBeansProjects/newCard/CardGame/src/GamePlay.java</file>
-            <file>file:/C:/Users/CLinicIT/Documents/NetBeansProjects/newCard/CardGame/src/Card.java</file>
-            <file>file:/C:/Users/CLinicIT/Documents/NetBeansProjects/newCard/CardGame/src/Player.java</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> THEIRS
