@@ -3,12 +3,12 @@ public class Player {
 
     private final int playerId;
     private String playerName;
-    private Card[] handCard = new Card[3];
-    private Player[] winWho = new Player[17];
+    private final Card[] handCard = new Card[3];
+    private final Player[] winWho = new Player[17];
     private int winHead;
-    private Player[] loseWho = new Player[17];
+    private final Player[] loseWho = new Player[17];
     private int loseHead;
-    private Player[] drawWho = new Player[17];
+    private final Player[] drawWho = new Player[17];
     private int drawHead;
 
     public Player(int playerId, String playerName) {
@@ -123,4 +123,5 @@ public class Player {
         drawHead = 0;
     }
 
+    
 }

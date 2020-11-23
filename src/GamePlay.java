@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class GamePlay {
 
-    private Deck deck = new Deck();
+    private final Deck deck = new Deck();
     private final Player[] player = new Player[17];
     private int playerCount = 2;
     private int cardRemaining;

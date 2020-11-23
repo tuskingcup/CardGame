@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author CLinicIT
- */
-public class Deck {
+public final class Deck {
     private final Card[] card = new Card[52];
     private int cardRemaining;
     
@@ -38,7 +28,7 @@ public class Deck {
      public Card drawCard(int player) {
         if (cardRemaining > 0) {
             int cardGet = randomCard();
-            String cardRealyGet = getCard(cardGet);
+            Card cardRealyGet = card[cardGet];
             cardRemaining--;
             Card[] newDeck = new Card[cardRemaining];
             for (int i = 0; i < cardRemaining + 1; i++) {
@@ -50,7 +40,7 @@ public class Deck {
                 }
             }
             System.arraycopy(newDeck, 0, card, 0, cardRemaining);
-            return card[cardGet];
+            return cardRealyGet;
         } else {
             return null;
         }
