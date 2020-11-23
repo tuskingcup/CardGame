@@ -1,6 +1,10 @@
 
 import java.util.Scanner;
 
+/**
+*[H1]This is a CardGame class[/H1]
+ */
+
 public class CardGame {
 
     public static void main(String[] args) {

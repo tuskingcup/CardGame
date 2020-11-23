@@ -9,13 +9,19 @@
  * @author CLinicIT
  */
 public class Deck {
+
     private final Card[] card = new Card[52];
     private int cardRemaining;
-    
-    public Deck(){
-    cardGennarate();
+
+    public Deck() {
+        cardGennarate();
     }
-    
+
+    /**
+     * this method is use to describe card face as char
+     *
+     * @return nothing
+     */
     public void cardGennarate() {
         int count = 0;
         for (int num = 1; num <= 13; num++) {
@@ -28,14 +34,34 @@ public class Deck {
         }
         cardRemaining = 52;
     }
-    
-     private int randomCard() {
+
+    /**
+     * returns the char value of card.
+     *
+     * @return int number value of cardRemaining
+     */
+    private int randomCard() {
         return (int) ((Math.random() * cardRemaining));
     }
-     public String getCard(int index) {
+
+    /**
+     * returns the char value of card face and number value of card.
+     *
+     * @param index is parameter that add to getCard
+     * @return int This return the sum of cardNumber and cardFace
+     */
+    public String getCard(int index) {
         return card[index].getCardNumber() + " " + card[index].getCardFace();
     }
-     public Card drawCard(int player) {
+
+    /**
+     * this method is use when returns the char value of card. decrease card
+     * remaining when use getCard
+     *
+     * @param player is the player who draw the card
+     * @return int value of card face
+     */
+    public Card drawCard(int player) {
         if (cardRemaining > 0) {
             int cardGet = randomCard();
             String cardRealyGet = getCard(cardGet);
@@ -56,7 +82,11 @@ public class Deck {
         }
 
     }
-       public void printAllCard() {
+
+    /**
+     * this method is reset card on hand and reset deck
+     */
+    public void printAllCard() {
         System.out.println("==Genarate Deck==");
         cardGennarate();
         cardRemaining = 52;

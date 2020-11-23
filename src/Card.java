@@ -1,3 +1,7 @@
+/**
+*[H1] Card Class[/H1]
+*It has cardNumber cardFace point1 and point2
+*/
 
 public class Card {
 
